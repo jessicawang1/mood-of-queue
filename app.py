@@ -15,7 +15,7 @@ def connect_to_gsheet():
         "https://www.googleapis.com/auth/drive"
     ]
     creds_dict = st.secrets["creds_json"]
-    creds = ServiceAccountCredentials.from_dict(creds_dict, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name(creds_dict, scope)
     client = gspread.authorize(creds)
     sheet = client.open("Mood Tracker").sheet1
     return sheet
