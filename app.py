@@ -10,8 +10,12 @@ import plotly.express as px
 # Connect to Google Sheet with timestamp, mood, Note columns
 @st.cache_resource
 def connect_to_gsheet():
+    scope = [
+        "https://www.googleapis.com/auth/spreadsheets",
+        "https://www.googleapis.com/auth/drive"
+    ]
     creds_dict = st.secrets["creds_json"]
-    creds = Credentials.from_service_account_info(creds_dict)
+    creds = ServiceAccountCredentials.from_dict(creds_dict, scope)
     client = gspread.authorize(creds)
     sheet = client.open("Mood Tracker").sheet1
     return sheet
