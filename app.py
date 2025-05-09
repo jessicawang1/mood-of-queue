@@ -1,18 +1,21 @@
 import streamlit as st
 import gspread
 from datetime import datetime
+from google.oauth2.service_account import Credentials
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 import plotly.express as px
 
+
 # Connect to Google Sheet with timestamp, mood, Note columns
 @st.cache_resource
 def connect_to_gsheet():
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+    creds_dict = st.secrets["creds_json"]
+    creds = Credentials.from_service_account_info(creds_dict)
     client = gspread.authorize(creds)
     sheet = client.open("Mood Tracker").sheet1
     return sheet
+
 
 sheet = connect_to_gsheet()
 
