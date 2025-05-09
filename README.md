@@ -12,7 +12,8 @@ A tool to help Ops team agents to log the mood of the patient support ticket que
 ---
 ## Getting Started
 ### Run on Streamlit Cloud
-No local setup required. 
+Click the link here [Mood of Ticket Queue](https://mood-of-ticket-queue.streamlit.app/)
+No local setup is required. 
 
 ### Run Locally
 #### 1. Clone the Repository
